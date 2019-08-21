@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+}
+
+.red {
+    background-color: red;
+    border: none;
+    border-radius: 10%;
+    padding: 20px;
+    font-size: 30px;
+}
+
+.green {
+    margin: 0 10px 0 10px;
+    background-color: green;
+    border: none;
+    border-radius: 10%;
+    padding: 20px;
+    font-size: 30px;
+}
+
+.blue {
+    background-color: blue;
+    border: none;
+    border-radius: 10%;
+    padding: 20px;
+    font-size: 30px;
+}
