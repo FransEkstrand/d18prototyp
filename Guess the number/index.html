@@ -11,18 +11,19 @@
 
 <body>
     <div class="explanation">
-        <h1>Guess the number</h1>
-        <p>Select a number between 0 and 20</p>
+        <h1 class="explanation1">Guess the number</h1>
+        <p class="explanation2">Select a number between 0 and 20</p>
     </div>
     <form class="guessIt">
         <label for="number">Your guess:</label>
-        <input type="number" name="number" id="number" min="0" max="20" placeholder="0">
+        <input class="inputbox" type="number" name="number" id="number" min="0" max="20" placeholder="0">
         <button class="button" id="button" type="submit">Guess</button>
 
 
     </form>
-    <p id="result"></p>
 
+    <p class="results" id="result"></p>
+    <p class="results" id="guesses"></p>
 
 
 

@@ -1,15 +1,10 @@
 let input = document.getElementById('number');
-let button = document.getElementById('button'),
-    count = 0;
-button.onclick = function () {
-    count += 1;
-    result.innerHTML = "Click me: " + count;
-};
-
+let button = document.getElementById('button');
 let resultElement = document.getElementById('result');
+let guessAmmount = document.getElementById('guesses')
 let numberToGuess = Math.round(Math.random() * 20);
 button.addEventListener('click', onButtonClicked);
-
+count = 1;
 
 
 function onButtonClicked(event) {
@@ -19,6 +14,9 @@ function onButtonClicked(event) {
     let guessedNumber = parseInt(input.value);
     if (guessedNumber === numberToGuess) {
         resultElement.innerHTML = 'You guessed the correct number!';
+        document.getElementById('button').disabled = true;
+        document.getElementById('number').disabled = true;
+        document.getElementById('')
     } else if (guessedNumber < 0) {
         resultElement.innerHTML = 'The guessed number must be between 0 and 20.';
     } else if (guessedNumber > 20) {
@@ -31,6 +29,11 @@ function onButtonClicked(event) {
         resultElement.innerHTML = 'Your guess must be a number';
     }
 
+
+    button.onclick = function () {
+        count += 1;
+        guessAmmount.innerHTML = 'Guesses ' + count + ' !';
+    };
 
 
 
