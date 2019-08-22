@@ -11,4 +11,4 @@ function onButtonOneClicked() {
 
 function onButtonTwoClicked() {
     changingText.innerHTML = 'You clicked on Button 2!';
-};
+}
