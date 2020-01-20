@@ -1,0 +1,45 @@
+body {
+    background-color: black;
+    background-size: contain;
+
+}
+
+.image {
+    position: absolute;
+    top: 9%;
+    left: -17%;
+    z-index: -1;
+}
+
+.outterContainer {
+    margin-top: 200px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.time {
+    color: #9900ff;
+    padding: 10px;
+    font-size: 4rem;
+    font-family: 'Fredoka One', cursive;
+}
+
+.input {
+    width: 200px;
+    height 20px;
+
+}
+
+.headTag {
+    color: #9900ff;
+    font-family: 'Fredoka One', cursive;
+}
+
+.button {
+    background-color: #9900ff;
+    font-size: 2rem;
+    padding: 3px 12px 3px 12px;
+    border-radius: 10%;
+    font-family: 'Fredoka One', cursive;
+}

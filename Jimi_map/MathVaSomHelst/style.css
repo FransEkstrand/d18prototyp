@@ -1,0 +1,48 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+body {
+    background-color: #9900ff;
+}
+
+h2 {
+    font-size: 5rem;
+}
+
+h3 {
+    font-size: 3rem;
+}
+
+#questionCounter {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    bottom: 0;
+    font-size: 3rem
+}
+
+.button {
+    border-radius: 10%;
+    padding: 3rem;
+    font-size: 4rem;
+}
+
+#result {
+    margin: 10%;
+    font-size: 4rem;
+}
+
+#playAgain {
+    font-family: sans-serif;
+    font-size: 2rem;
+    padding: 10px;
+    border-radius: 5%
+}
+
+#wrapper {
+    margin: 10%;
+
+}

@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 100%;
+    line-height: 1.5;
+    color: white;
+    background-color: #111111;
+}
+
+.app-container {
+    margin: 2rem auto;
+    width: 90%;
+    max-width: 500px;
+}
+
+.app-heading {
+    font-size: 3em;
+    font-weight: 300;
+    text-align: center;
+}
+
+.toolbar {
+    display: flex;
+    align-items: center;
+}
+
+.toolbar>+ {
+    margin-left: 1em;
+}
+
+input {
+    width: 100%;
+    height: 2.25em;
+    font-size: 1em;
+    color: white;
+    background-color: unset;
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    outline: none;
+}
+
+input:focus {
+    border-bottom-color: white;
+}
+
+.button {
+    display: block;
+    padding: 0 1em;
+    height: 2.25em;
+    flex: 0 0 auto;
+    line-height: 2.25;
+    text-decoration: none;
+    color: rgba(225, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 2.25em;
+}
+
+.button:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    margin: 1em 0;
+}
+
+.item.completed {
+    color: rgb(255, 25, 100);
+    text-decoration: line-through;
+}
+
+.item.completed .checkbox {
+    border-color: rbg(255, 25, 100)
+}
+
+.item.completed .checkbox::after {
+    display: block;
+    content: '';
+    width: 75%;
+    height: 75%;
+    background-color: rgb(255, 25, 100);
+    border-radius: 50%;
+}
+
+.checkbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.5em;
+    height: 1.5em;
+
+    border: 1px solid white;
+    border-radius: 1.5em;
+}
+
+.item-message {
+    margin: 0 1em;
+}

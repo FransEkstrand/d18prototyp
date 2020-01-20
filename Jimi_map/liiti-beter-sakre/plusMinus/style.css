@@ -1,0 +1,21 @@
+.minusButton {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+}
+
+.numberAmmounted {
+    position: absolute;
+    top: 10px;
+
+    margin: 10px 10px 10px 10px;
+    font-size: 6rem;
+    background-color: blueviolet;
+
+}
+
+.plusButton {
+    position: absolute;
+    top: 100px;
+    right: 100px;
+}

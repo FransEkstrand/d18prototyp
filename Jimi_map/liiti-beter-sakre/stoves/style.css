@@ -1,0 +1,15 @@
+.stove {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100px;
+    font-size: 62px;
+    margin: 10px;
+    border: 1px solid black;
+}
+
+.stove.active {
+    border-color: red;
+    color: red;
+}

@@ -1,0 +1,9 @@
+.tic-tac-toe-view {
+    position: absolute;
+}
+
+
+.cell {
+    position: absolute;
+    border: 1px solid black;
+}
