@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>p 1</p>
+    <p>p 2</p>
+    <h1 id="heading">h1</h1>
+    <input id="num" type="text" value="input" />
+    <input id="id" type="text" value="555" />
+    <script>
+        $(document).ready(function () {
+            $("#heading").html("Heading")
+            $("p:last").html("Sista P-tag")
+            $("p:first").html("Första P-tag")
+            $("#num").val("1234")
+            console.log($("#num").val());
+            console.log($("#id").val());
+
+
+
+
+
+
+
+
+
+
+
+
+
+        })
+    </script>
+</body>
+
+</html>

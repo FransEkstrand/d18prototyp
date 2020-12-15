@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <label for="input">Firstname</label>
+        <input type="text" id="firstname">
+        <label for="input">Lastname</label>
+        <input type="text" id="lastname">
+        <button type="submit" value="Skicka">Skicka</button>
+    </form>
+    <script>
+        $('form').submit(function (event) {
+            event.preventDefault();
+            console.log('skickar')
+
+            let firstname = $('#firstname').val();
+            let lastname = $('#lastname').val();
+
+            if (firstname != '' && lastname != '') {
+                console.log('values set')
+                $.post('/insertdata', {
+                    firstname: firstname,
+                    lastname: lastname
+                }, function (data) {
+                    console.log(data)
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>

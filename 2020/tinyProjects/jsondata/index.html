@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+</head>
+
+<body>
+    <div id="users"></div>
+    <script src="jsondata.js">
+
+    </script>
+    <script>
+        console.log(jsobject[9].id);
+        for (let i = 0; i < jsobject.length; i++) {
+            let html = "<div><table>"
+            html += `<div>${jsobject[i].id} </div> <br>`;
+            html += `<div>${jsobject[i].name} </div> <br>`;
+            html += `<div>${jsobject[i].username} </div> <br>`;
+            html += `<div>${jsobject[i].website} </div> <br>`;
+            html += `<div>${jsobject[i].phone} </div> <br>`;
+            html += `<div>${jsobject[i].email} </div> <br>`;
+            html += `<div>${jsobject[i].adress.street} </div> <br>`;
+            html += `<div>${jsobject[i].adress.suite} </div> <br>`;
+            html += `<div>${jsobject[i].adress.city} </div> <br>`;
+            html += `<div>${jsobject[i].adress.zipcode} </div> <br>`;
+            html += `<div>${jsobject[i].adress.geo.lat} </div> <br>`;
+            html += `<div>${jsobject[i].adress.geo.lng} </div> <br>`;
+            html += `<div>${jsobject[i].phone} </div> <br>`;
+            html += `<div>${jsobject[i].phone} </div> <br>`;
+            html += `<div>${jsobject[i].phone} </div> <br>`;
+
+            html += "</table></div><br><br><br>"
+            $("#users").append(html)
+        }
+    </script>
+</body>
+
+</html>

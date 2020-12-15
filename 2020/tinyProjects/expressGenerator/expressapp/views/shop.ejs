@@ -1,0 +1,198 @@
+<%- include('header'); -%>
+
+<div class="columns is-multiline is-mobile">
+    <div id="categories" class="column is-one-quarter" style="background:gray">
+        <aside class="menu">
+            <p class="menu-label">
+                General
+            </p>
+            <ul class="menu-list">
+                <% categories.forEach(function(cat) { %>
+                <li><a class="category" data="<%= cat.id %>"><%= cat.name %></a></li>
+                <% }) %>
+            </ul>
+        </aside>
+    </div>
+    <div id="content" class="column is-three-quarters">
+
+        <div id="products" class="columns is-multiline is-mobile">
+            <% products.forEach(function(product) { %>
+            <div class="column is-one-quarter">
+                <div class="product card" data="<%= product.id %>">
+                    <img src="<%= product.image %>" alt="Avatar" style="width:100%">
+                    <div class="container">
+                        <h4><b><%= product.title %></b></h4>
+                        <p><%= product.category %></p>A
+                        <p><%= product.description %></p>
+                        <p><%= product.price %>€</p>
+                    </div>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+
+
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        addPagination();
+        console.log("Sidan har laddats")
+        $(".product").on("click", function () {
+            //HUr hitta vi id till produkten som blev kilckad.
+            console.log("Du har klickat en produkt");
+            let id = $(this).attr("data")
+            let url = "/getproduct/" + id;
+            $.get(url, function (data) {
+                console.log(data)
+                let html = `
+      <div>
+        <div>${data.title}</div>
+        <div><img src="${data.image}"/></div>
+      </div>
+      `;
+                $("#content").html(html)
+                addPagination();
+            })
+        })
+        console.log("ads")
+        $(".pagi").on("click", pageclick);
+
+    })
+
+    function addPagination() {
+        let html = `<div>
+        <nav class="pagination" role="navigation" aria-label="pagination">
+          <ul class="pagination-list" id="paginator">
+          </ul>
+        </nav>
+      </div>`
+        $("#content").append(html)
+        update();
+        $(".pagi").on("click", pageclick);
+    }
+
+    //  console.log("Javascript Rocks!!");
+    let shoppingcart = [];
+    let activecategory = 0;
+
+    function addToCart(id) {
+        let product = {};
+        product.id = id;
+        product.amount
+    }
+    function getCartProduct() { }
+    function productInCart() { }
+
+
+
+
+    function pageclick() {
+        console.log("pageclick")
+        //ladda produkterna och gör om hela pagination med.
+        let page = $(this).attr("data")
+        activepage = page;
+        console.log(page)
+        let url = "/shop/getcategoryproducts/" + activecategory + "/" + page;//
+        getajaxcategoryproducts(url)
+
+    }
+
+    function categoryclick() {//gör en funcktion med namnet cc
+        let id = $(this).attr("data")//
+        activepage = 1;//ÄNDRA
+        activecategory = id;
+
+        let url = "/shop/getcategoryproducts/" + id + "/1";//
+        getajaxcategoryproducts(url)
+
+    }//
+
+    function getajaxcategoryproducts(url) {
+        console.log(url)
+        $.get(url, function (data) {//
+            console.log(data)//
+            let html = `<div id="products" class="columns is-multiline is-mobile">`;
+
+            console.log("antal produkter:" + data.length + " ppp " + ppp + " max" + maxpages + " total:" + data[0].total)
+            maxpages = Math.ceil(data[0].total / ppp);//ÄNDRA
+
+            for (let i = 0; i < data.length; i++) {
+                html += `
+      <div class="column is-one-quarter">
+            <div data="${data[i].id}" class="card product">
+                <img src="${data[i].image}" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>${data[i].title}</b></h4>
+                    <p>${data[i].description}</p>
+                    <p>${data[i].price}€</p>
+                </div>
+            </div>
+          </div>
+      `
+            }
+            html += `</div>`
+            $("#content").html(html);
+            addPagination();
+            console.log("efter getajax");
+            //update();
+        }) //
+    }
+
+    $(".category").on("click", categoryclick);
+
+    let activepage =<%- activepage %>;
+    let ppp =<%- ppp %>;
+    let maxpages = Math.ceil(<%- productamount %> /ppp)
+
+
+        console.log(activepage, ppp,<%- productamount %>, maxpages)
+        function addNumber(num, active) {
+            if (active)
+                $("#paginator").append(`<li><a class="pagination-link is-current" aria-label="Page ${num}" aria-current="page">${num}</a></li>`)
+            else
+                $("#paginator").append(`<li><a data="${num}" class="pagination-link pagi" aria-label="Goto page ${num}">${num}</a></li>`)
+        }
+        function addDots() {
+            $("#paginator").append(`<li><span class="pagination-ellipsis">&hellip;</span></li>`)
+        }
+        function addNext() {
+            $("#paginator").append(`<li><a onclick="next()" id="next" class="pagination-next">></a></li>`)
+        }
+        function addPrevious() {
+            $("#paginator").append(`<li><a onclick="previous()" id="previous" class="pagination-previous"> < </a></li>`)
+        }
+
+        function update() {
+            console.log("update")
+            $("#paginator").html("");
+            addPrevious()
+            addNumber(1, activepage == 1)
+            for (i = 2; i < maxpages; i++)
+                addNumber(i, i == activepage)
+            if (maxpages!==1)
+                addNumber(maxpages, activepage == maxpages)
+            addNext();
+            
+            console.log("sfas")
+        }
+
+        function previous() {
+            console.log("previous");
+            if (activepage > 1)
+                activepage--
+            let url = "/shop/getcategoryproducts/" + activecategory + "/" + activepage;
+            getajaxcategoryproducts(url)
+
+        }
+        function next() {
+            console.log("next");
+            if (activepage < maxpages)
+                activepage++
+            let url = "/shop/getcategoryproducts/" + activecategory + "/" + activepage;
+            getajaxcategoryproducts(url)
+        }
+
+
+
+        <%- include('footer'); -%>

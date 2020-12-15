@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css" />
+  <title>Document</title>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      <div class="columns" id="cardcolumns">
+
+
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <script>
+
+    // let players = [
+    //   { firstname: "Jhon", lastname: "Dover", height: 178, weight: 88, number: 18, handed: "Left" },
+    //   { firstname: "Kalle", lastname: "Hängmans", height: 188, weight: 78, number: 14, handed: "Left" },
+    //   { firstname: "asd", lastname: "dsa", height: 187, weight: 77, number: 12, handed: "Right" },
+    //   { firstname: "123", lastname: "321", height: 185, weight: 87, number: 17, handed: "Right" }
+    // ]
+
+    $.get("http://localhost:1337/getplayers", function (data) {
+      let players = data;
+      for (let i = 0; i < players.length; i++) {
+        playerCard(players[i])
+      }
+    })
+
+    function playerCard(data) {
+      $('#cardcolumns').append(`
+<div class="column">
+    <div class="card">
+          
+  <div class="card-image">
+    <figure class="image is-4by3">
+      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+    </figure>
+  </div>
+    <div class="card-content">
+      
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4">${data.firstname + " <br>" + data.lastname}</p>
+            <p class="subtitle is-6">${data.height + "cm " + data.weight + "kg"}</p>
+            <p class="subtitle is-6">#${data.number + " <br>" + data.handed + " handed"}</p>
+          </div>
+      
+    </div>
+</div>`)
+    }
+
+  </script>
+
+
+  <!-- <script>
+
+        let players = [
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+        ]
+
+
+        for (let i = 0; i < players.length; i++) {
+            playerCard(players[i])
+        }
+        function playerCard(data) {
+            $('#divs').append(`<div>${data}</div>`)
+        }
+
+    </script> -->
+
+
+
+
+</body>
+
+</html>

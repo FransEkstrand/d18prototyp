@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma.min.css"
+        integrity="sha512-ADrqa2PY1TZtb/MoLZIZu/Z/LlPaWQeDMBV73EMwjGam43/JJ5fqW38Rq8LJOVGCDfrJeOMS3Q/wRUVzW5DkjQ=="
+        crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+            <ul class="pagination-list" id="paginator">
+            </ul>
+        </nav>
+        <ul>
+            <li>Product amount<input type="number" id="productamount"></li>
+            <li>Active Page<input type="number" id="activepage"></li>
+            <li>Step<input type="number" id="step"></li>
+            <li>PPP<input type="number" id="ppp"></li>
+        </ul>
+
+    </div>
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                Website content by <strong>Megamack</strong>
+            </p>
+        </div>
+    </footer>
+    <script>
+        $(document).ready(function () {
+            console.log("Jabbadabbadoo")
+            $("#productamount").val(productamount);
+            $("#activepage").val(activepage);
+            $("#step").val(step);
+            $("#ppp").val(ppp);
+        })
+
+
+
+        let productamount = 1500;
+        let activepage = 2;
+        let step = 3;
+        let ppp = 25;
+        let lastpage = Math.ceil(productamount / ppp);
+        console.log(typeof productamount);
+        $("#productamount").on("input", function () {
+            productamount = parseInt($("#productamount").val());
+            print()
+        })
+        $("#activepage").on("input", function () {
+            activepage = parseInt($("#activepage").val());
+            print()
+        })
+        $("#step").on("input", function () {
+            step = parseInt($("#step").val());
+            print()
+        })
+        $("#ppp").on("input", function () {
+            ppp = parseInt($("#ppp").val());
+            print()
+        })
+
+        function addNumber(num, active) {
+            if (active)
+                $('#paginator').append(
+                    `<li><a class="pagination-link is-current" aria-label="Goto page ${num}">${num}</a></li>`)
+            else
+                $('#paginator').append(`<li><a class="pagination-link" aria-label="Goto page ${num}">${num}</a></li>`)
+        }
+
+        function addDots() {
+            $('#paginator').append(`<li><span class="pagination-ellipsis">&hellip;</span></li>`)
+        }
+
+        function addNext() {
+            $('#paginator').append(`<li><a onclick="nextPage()" class="pagination-next">Next page</a></li>`)
+        }
+
+        function addPrevious() {
+            $('#paginator').append(`<li><a onclick="prevPage()" class="pagination-previous">Previous</a></li>`)
+        }
+
+        function nextPage() {
+            activepage++
+            print()
+        }
+
+        function prevPage() {
+            activepage--
+            print()
+        }
+
+
+        function printLeftDots() {
+            if ((activepage > step * 2)) {
+                addDots();
+            }
+        }
+
+        function printRightDots() {
+            if (!(activepage > lastpage - step * 2)) {
+                addDots();
+            }
+        }
+
+        function print() {
+
+
+
+            $("#paginator").html("")
+            addPrevious()
+            if (activepage <= 0) {
+                activepage = 1;
+                $("#activepage").val(activepage);
+            }
+
+            if (activepage > lastpage) {
+                activepage = lastpage;
+                $("#activepage").val(lastpage);
+            }
+
+            if (activepage == 1) {
+                addNumber(1, true)
+            } else {
+                addNumber(1)
+            }
+            printLeftDots()
+
+            let start = 0;
+            let stop = 0;
+            if (activepage < step * 2) {
+                start = 2;
+                stop = start + step * 2;
+            } else {
+                if (activepage == 6) {
+                    start = activepage - 1 - step;
+                } else {
+                    start = activepage - step;
+                }
+
+                stop = activepage + step
+            }
+            for (let i = start; i <= stop; i++) {
+                if (i == activepage)
+                    addNumber(i, true)
+                else
+                    addNumber(i)
+            }
+
+            printRightDots()
+            if (activepage == lastpage) {
+                addNumber(lastpage, true)
+            } else {
+                addNumber(lastpage)
+            }
+
+            addNext()
+        }
+    </script>
+</body>
+
+</html>

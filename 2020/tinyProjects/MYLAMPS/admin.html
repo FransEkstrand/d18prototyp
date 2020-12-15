@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="lamp1">Lamp 1</button>
+    <button id="lamp2">Lamp 2</button>
+    <button id="lamp3">Lamp 3</button>
+    <button id="lamp4">Lamp 4</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        $("#lamp1").click(function () {
+            $.get("/lamp/1", function (data) {
+                console.log(data);
+            })
+        })
+        $("#lamp2").click(function () {
+            $.get("/lamp/2", function (data) {
+                console.log(data);
+            })
+        })
+        $("#lamp3").click(function () {
+            $.get("/lamp/3", function (data) {
+                console.log(data);
+            })
+        })
+        $("#lamp4").click(function () {
+            $.get("/lamp/4", function (data) {
+                console.log(data);
+            })
+        })
+    </script>
+</body>
+
+</html>

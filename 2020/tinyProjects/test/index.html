@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma.min.css"
+        integrity="sha512-ADrqa2PY1TZtb/MoLZIZu/Z/LlPaWQeDMBV73EMwjGam43/JJ5fqW38Rq8LJOVGCDfrJeOMS3Q/wRUVzW5DkjQ=="
+        crossorigin="anonymous" />
+
+    <style>
+        html {
+            background-color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="message">Klicka på skärmen när den är grön.</div>
+    <script>
+        //när sidan laddats så blir den grön efter 2s
+        //väntar tills man har klickat på sidan.
+        //repetera
+        let x = null;
+        let activeColour = "red";
+        $(function () {
+            $("html").bind("click", function () {
+                red();
+            });
+            green();
+        });
+
+        function red() {
+            if (activeColour === "red") {//red
+                $("html").unbind();
+                clearTimeout(x);
+                gameOver()
+            } else {
+                setBackgroundColour("red")
+                green();
+            }
+        }
+        function gameOver() {
+            setBackgroundColour("yellow")
+            $("#message").html("You DieD a long and painful DEATH !!")
+        }
+
+        function green() {
+            console.log("green called")
+            x = setTimeout(function () {
+                setBackgroundColour("green")
+            }, 2000)
+        }
+        function setBackgroundColour(colour) {
+            $("html").css("background-color", colour);
+            activeColour = colour;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="clickSet()">Set</button>
+
+    <button onclick="clickShow()">Log</button>
+    <button onclick="clickDelete()">Delete</button>
+
+
+    <p id="get"></p>
+    <script>
+        function clickSet() {
+            let data = [{
+                name: "Frans"
+            }, {
+                name: "Isak"
+            }, {
+                name: "Markus"
+            }]
+            localStorage.setItem("names", JSON.stringify(data))
+        }
+
+        function clickShow() {
+            let name = JSON.parse(localStorage.getItem("names"))
+            let html = "";
+            for (let i = 0; i < name.length; i++) {
+                console.log(name[i]);
+            }
+
+        }
+
+        function clickDelete() {
+            localStorage.removeItem("names");
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body id="body">
+    <button onclick="showdie(random())">bruh</button>
+    <div>
+        <img id="d1" src="d1.png" alt="">
+        <img id="d2" src="d2.png" alt="">
+        <img id="d3" src="d3.png" alt="">
+        <img id="d4" src="d4.png" alt="">
+        <img id="d5" src="d5.png" alt="">
+        <img id="d6" src="d6.png" alt="">
+        <img id="d7" src="d7.png" alt="">
+        <img id="d8" src="d8.png" alt="">
+        <img id="d9" src="d9.png" alt="">
+        <img id="d10" src="d10.png" alt="">
+    </div>
+    <script>
+        function random() {
+            return Math.floor(Math.random() * 10) + 1
+        }
+        function showdie(bruh) {
+            document.getElementById("d1").style.display = ""
+            document.getElementById("d2").style.display = ""
+            document.getElementById("d3").style.display = ""
+            document.getElementById("d4").style.display = ""
+            document.getElementById("d5").style.display = ""
+            document.getElementById("d6").style.display = ""
+            document.getElementById("d7").style.display = ""
+            document.getElementById("d8").style.display = ""
+            document.getElementById("d9").style.display = ""
+            document.getElementById("d10").style.display = ""
+
+            if (bruh !== 1)
+                document.getElementById("d1").style.display = "none"
+            if (bruh !== 2)
+                document.getElementById("d2").style.display = "none"
+            if (bruh !== 3)
+                document.getElementById("d3").style.display = "none"
+            if (bruh !== 4)
+                document.getElementById("d4").style.display = "none"
+            if (bruh !== 5)
+                document.getElementById("d5").style.display = "none"
+            if (bruh !== 6)
+                document.getElementById("d6").style.display = "none"
+            if (bruh !== 7)
+                document.getElementById("d7").style.display = "none"
+            if (bruh !== 8)
+                document.getElementById("d8").style.display = "none"
+            if (bruh !== 9)
+                document.getElementById("d9").style.display = "none"
+            if (bruh !== 10)
+                document.getElementById("d10").style.display = "none"
+
+
+        }
+        let arrnums = [0, 0, 0, 0, 0, 0]
+        let randomnum = 0;
+        for (let i = 0; i < 100000; i++) {
+            randomnum = Math.floor(Math.random() * 6)
+            arrnums[randomnum]++
+        }
+
+        for (let i = 0; i < arrnums.length; i++)
+            console.log(arrnums[i]);
+
+
+    </script>
+</body>
+
+</html>

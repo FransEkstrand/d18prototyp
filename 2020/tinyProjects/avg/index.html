@@ -1,0 +1,30 @@
+<script>
+    let list = [];
+    for (var i = 0; i < 100; i++) {
+        list.push(Math.floor(Math.random() * 9999));
+    }
+    list = list.sort(() => Math.random() - 0.5)
+    console.log(list)
+    let sum = 0;
+    for (let j = 0; j < list.length; j++) {
+        sum += list[j]
+    }
+    console.log(sum / list.length);
+
+
+
+
+
+
+    let bruh1 = Math.floor(Math.random() * 10)
+    let bruh2 = Math.floor(Math.random() * 10)
+
+    if (bruh1 < bruh2)
+        console.log("bruh2 är större " + bruh2);
+    else if (bruh1 > bruh2)
+        console.log("bruh1 är större " + bruh1);
+    else if (bruh1 == bruh2)
+        console.log("lika bruh1: " + bruh1 + " bruh2: " + bruh2);
+
+
+</script>

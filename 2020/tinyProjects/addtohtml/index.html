@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"
+        integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ=="
+        crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="input" type="text">
+    <button id="button">ADD</button>
+    <ul id="ul"></ul>
+    <script>
+        let editMode = false;
+        let currentId = 0;
+        function getValue() {
+            return $("#input").val()
+        }
+
+        $("#button").on('click', function () {
+            if (editMode !== true) {
+                addElement(getValue())
+            } else {
+                itemArr.splice(currentId, 1, getValue())
+                editMode = false
+                updateItems()
+            }
+        })
+
+        let itemArr = []
+        function addElement(text) {
+            if (text !== "") {
+                itemArr.push(text)
+                console.log(itemArr);
+            }
+            updateItems()
+        }
+
+        function updateItems() {
+            let itemList = ""
+            for (let i = 0; i < itemArr.length; i++) {
+                itemList += `
+                <li id="item${i}">${itemArr[i]} 
+                    <button onClick="deleteElement(${i})">X</button>
+                    <button onClick="editElement(${i})">Edit</button>
+                </li>`;
+            }
+            $("ul").html(itemList);
+        }
+
+        function deleteElement(id) {
+            itemArr.splice(id, 1)
+            console.log(itemArr);
+            updateItems()
+        }
+        
+        function editElement(id) {
+            editMode = true;
+            currentId = id;
+        }
+    </script>
+</body>
+
+</html>

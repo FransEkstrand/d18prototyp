@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width='device-width', initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js">
+    </script>
+
+
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Här ska det pinta ut namnet:</h1>
+    <div id="lista"></div>
+
+    <script>
+        let url = "http://localhost:3000/getpersons";
+        $.get(url,
+            function (data, status) {
+
+                let html =
+                    "<table id='personer' class='display' style='width:100%'><thead><tr><th>FirstName</th><th>LastName</th></tr></thead><tbody>";
+                for (let i = 0; i < data.length; i++) {
+                    html += `<tr><td>${data[i].firstname}</td><td>${data[i].lastname}</td></tr>`
+                }
+                html += `</tbody></table>`
+                console.log(html);
+                $("#lista").html(html);
+                $('#personer').DataTable({
+                    "paging": true,
+                    "ordering": true,
+                    "info": false
+                });
+            });
+    </script>
+
+</body>
+
+</html>

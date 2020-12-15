@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css" />
+    <title>Document</title>
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <div class="columns is-multiline" id="cardcolumns">
+
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <script>
+
+        let teams = [
+            { teamname1: "Killna", hometeamgoals: 3, teamname2: "Joo", secondteamgoals: 2 },
+            { teamname1: "Bruhhh", hometeamgoals: 5, teamname2: "cringe", secondteamgoals: 2 },
+            { teamname1: "duude", hometeamgoals: 9, teamname2: "dudette", secondteamgoals: 0 },
+            { teamname1: "bru", hometeamgoals: 4, teamname2: "dhuud", secondteamgoals: 2 },
+            { teamname1: "asd", hometeamgoals: 3, teamname2: "das", secondteamgoals: 3 },
+        ]
+
+
+        for (let i = 0; i < teams.length; i++) {
+            playerCard(teams[i])
+        }
+        function playerCard(data) {
+            $('#cardcolumns').append(`
+<div class="column is-half">
+    <div class="card ">
+        <div class="card-content">
+            <div class="media">
+                <div class="media-left">
+                    <figure class="image is-48x48">
+                        <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                    </figure>
+                </div>
+                <div class="media-content">
+                    <p class="title is-4">${data.teamname1 + " " + data.hometeamgoals + " - " + data.secondteamgoals + " " + data.teamname2}</p> 
+                </div>
+                <div class="media-right">
+                    <figure class="image is-48x48">
+                        <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+`)
+        }
+
+    </script>
+
+
+    <!-- <script>
+
+        let players = [
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+        ]
+
+
+        for (let i = 0; i < players.length; i++) {
+            playerCard(players[i])
+        }
+        function playerCard(data) {
+            $('#divs').append(`<div>${data}</div>`)
+        }
+
+    </script> -->
+
+
+
+
+</body>
+
+</html>

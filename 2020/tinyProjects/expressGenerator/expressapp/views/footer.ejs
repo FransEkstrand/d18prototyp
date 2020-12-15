@@ -1,0 +1,36 @@
+<script>
+    $(document).ready(function () {
+
+        // Check for click events on the navbar burger icon
+        $(".navbar-burger").click(function () {
+
+            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+            $(".navbar-burger").toggleClass("is-active");
+            $(".navbar-menu").toggleClass("is-active");
+
+        });
+    });
+
+
+
+    function teststatic() {
+        let url = "/getpage/static";
+        $.get(url, function (data) {
+            $("#content").html(data);
+        })
+    };
+</script>
+
+</body>
+
+<footer style="
+
+background-color: rgb(165, 165, 165); 
+margin-top: 10em; 
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+text-align: center;">
+    <p>nåjanåjanåjanåjanåjanåjanåjanåjåjanåjanåjanåjanåjanåjanåja</p>
+</footer>

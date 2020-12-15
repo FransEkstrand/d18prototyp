@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sliderilainen</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <section class="section">
+        <div id="cards" class="columns is-mobile is-multiline"></div>
+    </section>
+
+
+    <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            Game over <button id="startgame" onclick="startGame()">START AGAIN</button>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+
+    <script>
+        let deckimage = "deckimg.png"
+
+        let card1 = { id: 0, image: "" };
+        let card2 = { id: 0, image: "" };
+        let turns = 1;
+        let pairsFound = 0;
+        let images = [
+            "abborre.jpg",
+            "braxen.jpg",
+            "gadda.jpg",
+            "lake.jpg",
+            "mort.jpg",
+            "oring.jpg",
+            "ruda.jpg",
+            "sutare.jpg"]
+
+        let pairs = images.concat(images);//dubblar så vi får par utav varje kort
+        pairs = pairs.sort(() => Math.random() - 0.5)//blandar korten
+        createBoard();
+
+
+        function createBoard() {
+            for (let i = 0; i < pairs.length; i++) {
+                //console.log(pairs[i])
+                addCard(i)
+            }
+        }
+
+        function addCard(i) {
+            let html = `<div class="column is-one-quarter">
+            <figure class="image is-square">
+             <img class="gamecard" turned="false" data="${i}" src="${deckimage}">
+            </figure>
+        </div>`
+            $("#cards").append(html);
+        }
+
+        $(".gamecard").on("click", cardClicked)
+        function gameOver() {
+            $(".modal").addClass("is-active is-clipped");
+        }
+        function startGame() {
+            location.reload()
+        }
+
+        function cardClicked() {
+            let id = $(this).attr("data")
+            //console.log($(`img[data="${id}"]`).attr("turned"));
+            if ($(`img[data="${id}"]`).attr("turned") === "false") {
+                if (card1.id === 0) {
+                    //console.log("Spara kort 1")
+                    card1.image = pairs[id];
+                    card1.id = id;
+                    $(`img[data="${id}"]`).attr("src", pairs[id]);
+                } else if (card2.id === 0) {
+                    if (id !== card1.id) {
+                        //console.log("Spara kort 2")
+                        card2.image = pairs[id];
+                        card2.id = id;
+                        $(`img[data="${id}"]`).attr("src", pairs[id]);
+                        if (card1.image === card2.image) {
+                            pairsFound++
+                            //console.log("TAr spelet slut eller inte?")
+                            //console.log("VI hittade ett par låt dom vara öppna. turn++. skriv in open='true' för den här bilden")
+                            $(`img[data="${card1.id}"]`).attr("turned", "true");
+                            $(`img[data="${card2.id}"]`).attr("turned", "true");
+                            card1.id = 0;
+                            card1.image = "";
+                            card2.id = 0;
+                            card2.image = "";
+                            if (pairsFound === images.length) {
+                                console.log(`GAME OVER YOUR RESULT IS ${turns} TURNS`)
+                                gameOver();
+                            }
+                        } else {
+                            turns++
+                            console.log(turns)
+                            //console.log("Vänd tillbaka korten")
+                            setTimeout(() => {
+                                $(`img[data="${card1.id}"]`).attr("src", deckimage);
+                                $(`img[data="${card2.id}"]`).attr("src", deckimage);
+                                card1.id = 0;
+                                card1.image = "";
+                                card2.id = 0;
+                                card2.image = "";
+                            }, 1500);
+                        }
+                    }
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sliderilainen</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/css/bulma-carousel.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+		crossorigin="anonymous" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+		integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+		crossorigin="anonymous"></script>
+	<style>
+		/* Container needed to position the overlay. Adjust the width as needed */
+		.container {
+			position: relative;
+			width: 100%;
+			max-width: 1920px;
+		}
+
+		/* Make the image to responsive */
+		.image {
+			width: 100%;
+			height: auto;
+		}
+
+		/* The overlay effect (full height and width) - lays on top of the container and over the image */
+		.overlay {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			height: 100%;
+			width: 100%;
+			opacity: 0;
+			transition: .3s ease;
+		}
+
+		/* When you mouse over the container, fade in the overlay icon*/
+		.container:hover .overlay {
+			opacity: 1;
+		}
+
+		/* The icon inside the overlay is positioned in the middle vertically and horizontally */
+		.iconleft {
+			color: white;
+			font-size: 2rem;
+			position: absolute;
+			top: 50%;
+			left: 5%;
+			transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			text-align: center;
+		}
+
+		.iconright {
+			color: white;
+			font-size: 2rem;
+			position: absolute;
+			top: 50%;
+			left: 95%;
+			transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			text-align: center;
+		}
+
+		/* When you move the mouse over the icon, change color */
+		.fa-user:hover {
+			color: #eee;
+		}
+	</style>
+</head>
+
+<body>
+	<section class="section">
+		<div class="container">
+			<div id="slider" class="slider">
+				<div class="item-1">
+					<div class="container">
+						<img id="image" src="1.jpg" alt="Avatar" class="image">
+
+						<div class="overlay">
+							<a onclick="left()" class="iconleft" title="left">
+								<i class="fa fa-arrow-left"></i>
+							</a>
+							<a onclick="right()" class="iconright" title="Right">
+								<i class="fa fa-arrow-right"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+	<script>
+		let currentimg = 1
+		function left() {
+			currentimg--
+			if (currentimg < 1)
+				currentimg = 4
+
+			$("#image").attr("src", currentimg + ".jpg")
+			console.log("Right")
+		}
+		function right() {
+			currentimg++
+			if (currentimg > 4)
+				currentimg = 1
+
+			$("#image").attr("src", currentimg + ".jpg")
+			console.log("Left")
+			console.log(currentimg);
+		}	
+	</script>
+</body>
+
+</html>

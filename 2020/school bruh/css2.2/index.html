@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="bruhh"></p>
+    <script>
+        let string = "Hej på dej";
+        let strarr = string.split("")
+        let colorarr = ["red", "green", "blue", "", "yellow", "blue", "", "magenta", "lime", "purple"];
+        let copypasteable = "";
+        for (let i = 0; i < strarr.length; i++)
+            copypasteable += `<span style="color:${colorarr[i]};">${strarr[i]}</span>`
+        document.getElementById("bruhh").innerHTML = copypasteable;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+let game = new Game(900, 500, "myCanvas");

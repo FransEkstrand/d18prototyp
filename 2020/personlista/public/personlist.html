@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+</head>
+
+<body>
+
+    <h2>HTML Table</h2>
+    <p id="formHeading"></p>
+
+    <label for="fname">First name:</label><br>
+    <input type="text" id="firstname" name="fname" value="John" /><br>
+    <label for="lname">Last name:</label><br>
+    <input type="text" id="lastname" name="lname" value="Doe" /><br><br>
+    <input type="text" id="id" />
+    <input style="display: none;" id="cancel" type="submit" value="Cancel">
+    <input id="submit" type="submit" value="Submit">
+
+
+    <br>
+    <div id="tabell"></div>
+
+
+    <script>
+        let url = "http://localhost:3000/getpersons";
+        $.get(url, function (data, status) {
+            let html =
+                '<table id ="tabell"><tr><th>ID</th><th>Firstname</th><th>Lastname</th><th>ADMIN</th></tr>';
+            for (i = 0; i < data.length; i++)
+                html += `<tr>
+                <td>${data[i].id}</td>
+                <td id="firstname_${data[i].id}">${data[i].firstname}</td>
+                <td id="lastname_${data[i].id}">${data[i].lastname}</td>
+                <td>
+                    <a onclick="edit(${data[i].id})">Edit</a>
+                    <a onclick="del(${data[i].id})">Delete</a>
+                </td>
+                </tr>`
+            html += "</table>"
+            $("#tabell").html(html);
+        })
+        $("#cancel").click(function () {
+            $("#formHeading").html("")
+            $("#firstname").val("")
+            $("#lastname").val("")
+            $("#ID").val("")
+            $("#submit").val("Submit")
+            $("#cancel").hide()
+        })
+        $("#submit").click(function () {
+            if (firstname != '' && lastname != '') {
+                console.log($("#id").val());
+                if ($("#id").val()) {
+                    let firstname = $('#firstname').val();
+                    let lastname = $('#lastname').val();
+
+                    $.post('/updateperson', {
+
+                            firstname: firstname,
+                            lastname: lastname,
+                            id: $("#id").val(),
+                        }
+
+                        ,
+                        function (data) {
+                            location.reload();
+                        })
+                } else {
+                    let firstname = $('#firstname').val();
+                    let lastname = $('#lastname').val();
+                    $.post('/insertperson', {
+                        firstname: firstname,
+                        lastname: lastname
+                    }, function (data) {
+                        location.reload();
+                    })
+                }
+            } else {
+                alert("Fyll i alla fält")
+            }
+        })
+
+        function edit(id) {
+            $("#formHeading").html('Du editerar person med id: ' + id)
+            $("#firstname").val($('#firstname_' + id).text())
+            $("#lastname").val($('#lastname_' + id).text())
+            $("#id").val(id)
+            $("#submit").val("Save")
+            $("#cancel").show()
+        };
+
+        function del(id) {
+            let url = "http://localhost:3000/deleteperson";
+            $.get(url + "/" + id,
+                function (data, status) {
+                    location.reload();
+                }
+            )
+        }
+    </script>
+
+</body>
+
+</html>

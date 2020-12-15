@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body id="body">
+    <form method="POST">
+        <input value="Firstname">
+        <input value="Lastname">
+
+
+        <button type="submit">Submit</button>
+    </form>
+
+
+
+    <script>
+        function bruhclick() {
+            $("input").on("click", () => {
+
+                $("input").val("hej")
+            })
+        }
+        bruhclick()
+        $(document).keypress(function (event) {
+
+            //sulta ta emot keypress
+
+            $("input").off("click")
+
+            // $("#body").html(`Du trycket på ${event.key}`);
+            event.preventDefault();
+            $.post("/getkeypressed", event.key, function (data, status) {
+                //börja ta emot keypress igen
+                console.log("funkar ?");
+                $("input").on("click", () => {
+
+                    $("input").val("yo")
+                })
+
+            });
+
+        });
+    </script>
+</body>
+
+</html>

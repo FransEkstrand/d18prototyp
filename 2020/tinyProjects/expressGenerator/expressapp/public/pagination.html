@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma-rtl.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1 style="font-size: 341.33592224121px;">⋉⋉⋉⋉⋉</h1>
+
+    <div id="minpag">
+
+    </div>
+
+    <script>
+        let activepage = 6;
+        let ppp = 25;
+        let productLength = 1500;
+        let step = 3;
+        let code = ``;
+        for (var i = activepage - step; i < activepage + step + 1; i++) {
+            if (activepage == i)
+                code += `<li><a class="pagination-link is-current" data="${i}" />` + i + '</a>';
+
+            else if (i < 1) {
+                code = code
+            } else
+                code += `<li><a class="pagination-link" data="${i}" />` + i + '</a>';
+        }
+        code = `    
+        <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+            <a class="pagination-previous" />&vltri;</a>
+            <ul class="pagination-list">
+            ` + code + `
+            <a class="pagination-next"/>&vrtri;</a>
+        </nav>`
+
+
+        $("#minpag").html(code)
+    </script>
+</body>
+
+</html>

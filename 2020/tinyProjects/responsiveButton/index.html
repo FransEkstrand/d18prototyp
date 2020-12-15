@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hello world</title>
+</head>
+
+
+<body>
+    <div id="buttontext">START</div>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io();
+    socket.emit('changebuttontext', "");
+    socket.on('textchanged', function (data) {
+        document.getElementById('buttontext').innerHTML = data.message;
+    });
+</script>
+
+</html>

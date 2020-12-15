@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input id="inputBox" type="text">
+    <button onclick="post">button</button>
+    <div id="result">
+    </div>
+
+
+    <script>
+        function post() {
+            let x = $("#inputBox").val();
+            $("#result").html(x);
+        }
+    </script>
+</body>
+
+</html>

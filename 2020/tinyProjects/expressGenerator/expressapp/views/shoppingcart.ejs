@@ -1,0 +1,44 @@
+<script>
+    //filter, map, some, reduce
+    let cart = [{
+            id: 1,
+            amount: 5
+        },
+        {
+            id: 2,
+            amount: 2
+        },
+        {
+            id: 3,
+            amount: 78
+        }
+    ];
+
+    function deleteProduct(id) {
+        for (let i = 0; i < cart.length; i++) {
+            if (id === cart[i].id) {
+                cart.splice(i, 1);
+                break;
+            }
+        }
+    }
+
+    function addProduct(id) {
+        let plussat = false;
+        for (let i = 0; i < cart.length; i++) {
+            if (id === cart[i].id) {
+                cart[i].amount++;
+                plussat = true;
+            }
+        }
+        if (!plussat) {
+            cart.push({
+                id: id,
+                amount: 1
+            })
+        }
+    }
+</script>
+
+
+console.log(cart)

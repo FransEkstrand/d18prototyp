@@ -1,0 +1,11 @@
+<%- include('header'); -%>
+
+<h1>Persons</h1>
+<p>Welcome to Persons</p>
+
+<% data.forEach(function(person){ %>
+<li><%= person.name %> - <%= person.email %></li>
+<% }); %>
+
+
+<%- include('footer'); -%>
