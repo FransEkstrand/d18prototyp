@@ -24,8 +24,8 @@ var mailOptions = {
     subject: 'not a spam email',
     text: 'it was working very much !',
     attachments: [{
-        filename: 'retardedSonic.gif',
-        path: 'retardedSonic.gif'
+        filename: 'Sonic.gif',
+        path: 'Sonic.gif'
     }]
 };
 
